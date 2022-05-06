@@ -1,0 +1,78 @@
+.game-2048 {
+    width: 7.75em;
+    margin: 0 auto;
+    font-size: 3em;
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+.game-2048:focus {
+    outline: none;
+    width: 7.75em;
+    margin: 0 auto;
+    font-size: 3em;
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+.board-2048 {
+	width: 100%;
+	height: 7.75em;
+	margin: 0 auto;
+	background-color: #1E253D;
+	border-radius: 3%;
+	position: relative;
+}
+
+.tiles {
+	width: 96%;
+	height: 96%;
+	font-size: 1em;
+	text-align: center;
+	color: white;
+	position: relative;
+	top: 2%;
+	left: 2%;
+}
+
+.tile {
+	width: 23%;
+	height: 23%;
+	margin: 1%;
+	background-color: #374364;
+	border-radius: 3%;
+	position: relative;
+	float: left;
+}
+
+.tile-span {
+	height: 100%;
+	width: 100%;
+	display: block;
+	line-height: 1.8;
+	position: relative;
+	font-size: 0.65em;
+	line-height: 2.7;
+}
+
+.tile-span-new {
+	height: 100%;
+	width: 100%;
+	display: block;
+	line-height: 1.8;
+	position: relative;
+	font-size: 0.65em;
+	line-height: 2.7;
+}
+
+/* @media screen and (max-height: 768px) and (orientation: landscape) {
+	#game {
+		font-size: 3em;
+	}
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+	#game {
+		font-size: 2em;
+	}
+} */

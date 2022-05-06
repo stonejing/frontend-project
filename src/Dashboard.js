@@ -18,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './ListItems';
+import GameTicTacToe from './GameTicTacToe/TicTacToe';
 
 
 const drawerWidth = 240;
@@ -158,6 +159,7 @@ function DashboardContent() {
                   }}
                 >
                   {/* <Chart /> */}
+                  <GameTicTacToe />
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
