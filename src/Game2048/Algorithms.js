@@ -729,3 +729,4 @@ window.requestAnimationFrame((function() {
 ));
 
 // https://play2048.co/dist/index.js
+// http://ovolve.github.io/2048-AI/

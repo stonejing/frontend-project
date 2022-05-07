@@ -9,39 +9,75 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import ImageIcon from '@mui/icons-material/Image';
+import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
+import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
+    <Link to="/frontend-project">
+      <ListItemButton>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="2048"> 
+      <ListItemButton>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="2048" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="tic-tac-toe">
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="TicTacToe" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="conway-life-game">
+      <ListItemButton>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+          <ListItemText primary="Conway's life game" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="break-out">
+      <ListItemButton>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Break Out" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="image-processing">
+      <ListItemButton>
+        <ListItemIcon>
+          <ImageIcon />
+        </ListItemIcon>
+        <ListItemText primary="Image Processing" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="pinball">
+      <ListItemButton>
+        <ListItemIcon>
+          <SportsBaseballIcon />
+        </ListItemIcon>
+        <ListItemText primary="Pinball" />
+      </ListItemButton>
+    </Link>
+
   </React.Fragment>
 );
 

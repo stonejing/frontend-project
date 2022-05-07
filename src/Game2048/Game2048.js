@@ -26,7 +26,6 @@ const keyCodes = {
     38: "up",
     39: "right",
     40: "down",
-
     72: "left",
     75: "up",
     76: "right",
@@ -34,8 +33,9 @@ const keyCodes = {
 };
 
 const goal = 2048;
-const numStartTiles = 1;
+const numStartTiles = 2;
 
+// performance, this is the fastest version
 function Matrix(rows, cols) {
     let matrix = [];
     for (let i = 0; i < rows; i++) {
@@ -69,10 +69,8 @@ function Tile(props) {
 
     function changeStyle()
     {
-        console.log("change style: di offset", dimension.current, offset.current);
         if(dimension.current === 110 && offset.current === -5)
         {
-            console.log("remove timer");
             dimension.current = 0;
             offset.current = 50;
             clearInterval(interval);
@@ -91,7 +89,6 @@ function Tile(props) {
 
     useEffect(() => {
         if (props.value !== 0 && props.anime === 2){
-            console.log("use effect 2.");
             interval = setInterval(() => {
                 changeStyle();
             }, 15);
@@ -100,11 +97,8 @@ function Tile(props) {
             }
         }
         if(props.value !== 0 && props.anime === 1) {
-            console.log("use effect 1.");
             interval = setInterval(() => {
                 if(dimension_2.current === 110) way.current = -1;
-
-                console.log("of", offset_2.current, dimension_2.current);
 
                 dimension_2.current += way.current * 2;
                 offset_2.current -= way.current;
@@ -133,7 +127,6 @@ function Tile(props) {
 
     if (props.value !== 0) {
         if(props.anime === 2){
-            console.log("render");
             return (
                 <div className='tile'>
                     <span className='tile-span' style={ ss }> { dimension.current === 110 && props.value} </span>
@@ -141,7 +134,6 @@ function Tile(props) {
             )
         }
         else if (props.anime === 1) {
-            console.log("render");
             return (
                 <div className='tile'>
                     <span className='tile-span-new' style={ ss }> { props.value} </span>
@@ -158,7 +150,6 @@ function Tile(props) {
         }
     }
     else {
-        console.log("di: ", dimension.current);
         return (
             <div className='tile'>
                 <span className='null'></span>
@@ -168,33 +159,33 @@ function Tile(props) {
 }
 
 function Board(props) {
+
+    let board = [];
+    const {tiles, anime} = props;
+
     function renderSquare(i, j) {
         return (
             <Tile
-                value={props.tiles[i][j]}
-                anime={props.anime[i][j]}
+                value={tiles[i][j]}
+                anime={anime[i][j]}
             />
         );
     }
 
+    const getBoard = () => {
+        for(let i = 0; i < 4; i++)
+        {
+            for(let j = 0; j < 4; j++)
+            {
+                board.push(renderSquare(i, j));
+            }
+        }
+        return board;
+    }
+
     return (
         <div className='tiles'>
-                { renderSquare(0, 0) }
-                { renderSquare(0, 1) }
-                { renderSquare(0, 2) }
-                { renderSquare(0, 3) }
-                { renderSquare(1, 0) }
-                { renderSquare(1, 1) }
-                { renderSquare(1, 2) }
-                { renderSquare(1, 3) }
-                { renderSquare(2, 0) }
-                { renderSquare(2, 1) }
-                { renderSquare(2, 2) }
-                { renderSquare(2, 3) }
-                { renderSquare(3, 0) }
-                { renderSquare(3, 1) }
-                { renderSquare(3, 2) }
-                { renderSquare(3, 3) }
+            { getBoard() }
         </div>
     );
 }
@@ -204,10 +195,10 @@ function Game2048() {
     const [ended, setEnded] = useState(false);
     const [paused, setPaused] = useState(false);
     const [finalNumber, setFinalNumber] = useState(0);
-    const [animationNew, setAnimationNew] = useState(Matrix(4, 4));
+    const [animation, setAnimation] = useState(Matrix(4, 4));
 
-    let newMatrix = [...matrix];
-    let animation = Matrix(4, 4);
+    let newMatrix = matrix;
+    let newAnimation = Matrix(4, 4);
 
     function withinBounds(x, y) {
         return (x >= 0 && y >= 0 && x < 4 && y < 4);
@@ -243,7 +234,7 @@ function Game2048() {
 
     function addRandomTile() {
         if (ended || paused)    return;
-        let tileNumber = Math.random() > 0.3 ? 2 : 4;
+        let tileNumber = Math.random() > 0.4 ? 2 : 4;
         let randomIndex, rowIndex, colIndex;
 
         while (true) {
@@ -253,8 +244,7 @@ function Game2048() {
             if (newMatrix[rowIndex][colIndex] === 0) break;
         }
         newMatrix[rowIndex][colIndex] = tileNumber;
-        animation[rowIndex][colIndex] = 2;
-        // setAnimationNew(animation);
+        newAnimation[rowIndex][colIndex] = 2;
     }
 
     function start() {
@@ -270,10 +260,10 @@ function Game2048() {
                 if (newMatrix[rowIndex][colIndex] === 0) break;
             }
             newMatrix[rowIndex][colIndex] = tileNumber;
-            animation[rowIndex][colIndex] = 2;
+            newAnimation[rowIndex][colIndex] = 2;
         }
         setMatrix(newMatrix);
-        setAnimationNew(animation);
+        setAnimation(newAnimation);
     }
 
     function clear() {
@@ -360,9 +350,8 @@ function Game2048() {
         if (madeAMove) {
             addRandomTile();
             checkResult();
-            setAnimationNew(animation);
+            setAnimation(newAnimation);
             setMatrix(newMatrix);
-            // setAnimationNew(animation);
         }
     }
 
@@ -383,21 +372,15 @@ function Game2048() {
     return (
         <div className='game-2048' onKeyDown={handleKeyDown} tabIndex={-1}>
             <div className='board-2048'>
-                <Board tiles={matrix} anime={animationNew}/>
-                {/* <button onClick={handleRestart}>{ended ? "you lose" : "click me"}</button> */}
+                <Board tiles={matrix} anime={animation}/>
+                <button onClick={handleRestart}>{ended ? "you lose" : "restart"}</button>
                 <div id="result-box">
                     <div id="result-background"></div>
                     <div id="result-message"></div>
                     <div id="result-tile-container">
                         <div id="result-tile"></div>
                     </div>
-                    <button id="keep-going-button" class="result-button">Keep Going</button>
-                    <button id="try-again-button" class="result-button">Try Again</button>
 			    </div>
-            </div>
-            <div id="message-box"></div>
-            <div id="menu">
-                <i id="restart" class="fa fa-refresh" aria-hidden="true"></i>
             </div>
         </div>
     )
