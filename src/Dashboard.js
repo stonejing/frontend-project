@@ -76,7 +76,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', height: "100vh"}}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -133,28 +133,27 @@ function DashboardContent() {
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+          <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
+            <Grid container spacing={0}>
+              <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{
-                    p: 2,
+                    p: 0,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: "80vh",
+                    height: "calc(100vh - 72px)",
+                    // justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <Typography
+                  {/* <Typography
                     component="h1"
                   >
                     CSS IS EXCELLENT
-                  </Typography>
+                  </Typography> */}
                   <Outlet />
                 </Paper>
               </Grid>
