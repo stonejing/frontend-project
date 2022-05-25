@@ -11,6 +11,7 @@ export default function ConwayLifeGamePixel()
   const canvasRef = useRef(null);
   const offscreenRef = useRef(null);
   const imageDataRef = useRef(null);
+  const requestRef = useRef(null);
 
   const stepx = 1;
   const stepy = 1;
@@ -46,7 +47,6 @@ export default function ConwayLifeGamePixel()
       let denseMatrix = Uint8ClampedArrayToDense(imgData.data, img.width, img.height);
       imageDataRef.current = denseMatrix;
 
-      let animationFrameId;
       const render = () => {
 
         context.fillStyle = 'rgba(0, 0, 0, .05)';
@@ -66,13 +66,11 @@ export default function ConwayLifeGamePixel()
             }
           }
         }
+        if(requestRef.current !== null)
+          requestRef.current = requestAnimationFrame(render);
+      }
 
-        animationFrameId = window.requestAnimationFrame(render);
-      }
-      render();
-      return () => {
-          window.cancelAnimationFrame(animationFrameId);
-      }
+      requestRef.current = requestAnimationFrame(render);
       // sparse matrix operation
       // p = [1 1:n-1];
       // q = [2:n n];
@@ -83,20 +81,11 @@ export default function ConwayLifeGamePixel()
       // and then use fillRect function to draw the pixel.i
     }
 
-    // let frameCount = 0;
-    // let animationFrameId;
+    return () => {
+      requestRef.current = null;
+      cancelAnimationFrame(requestRef.current);
+    }
 
-    // const render = () => {
-    //     // draw(context, frameCount);
-    //     GameofLife(boardRef);
-    //     drawGrid(context, 'black', stepx, stepy);
-    //     drawBoard(context, boardRef, stepx, stepy);
-    //     animationFrameId = window.requestAnimationFrame(render);
-    // }
-    // render();
-    // return () => {
-    //     window.cancelAnimationFrame(animationFrameId);
-    // }
   }, [])
 
   return (
