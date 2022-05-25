@@ -71,21 +71,12 @@ export default function ConwayLifeGamePixel()
       }
 
       requestRef.current = requestAnimationFrame(render);
-      // sparse matrix operation
-      // p = [1 1:n-1];
-      // q = [2:n n];
-      // Y = X(:, p) + X(:, q) + X(p, :) + X(q, :) + X(p, p) + X(q, q) + X(p, q) + X(q, p);
-      // X = (X & (Y == 2) | (Y == 3));
-      // use for loop to implement these two steps
-      // but it should not be like this, I have an idea.
-      // and then use fillRect function to draw the pixel.i
     }
 
     return () => {
-      requestRef.current = null;
       cancelAnimationFrame(requestRef.current);
+      requestRef.current = null;
     }
-
   }, [])
 
   return (
