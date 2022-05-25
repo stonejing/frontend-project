@@ -46,7 +46,7 @@ export default function ConwayLifeGamePixel()
 
       let denseMatrix = Uint8ClampedArrayToDense(imgData.data, img.width, img.height);
       imageDataRef.current = denseMatrix;
-
+      context.fillRect(0, 0, img.width, img.height);
       const render = () => {
 
         context.fillStyle = 'rgba(0, 0, 0, .05)';
