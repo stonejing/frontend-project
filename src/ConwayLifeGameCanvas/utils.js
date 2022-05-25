@@ -82,3 +82,58 @@ export function GameofLife(boardRef) {
   }
   return;
 }
+
+export function GameofLifeDense(boardRef)
+{
+  let row = boardRef.current.length;
+  let col = boardRef.current[0].length;
+  let imageBoard = new Array(row).fill(0).map(() => new Array(col).fill(0));
+  for(let i = 0; i < row; i++)
+  {
+    for(let j = 0; j < col; j++)
+    {
+      if(boardRef.current[i][j] === 1)
+      {
+        imageBoard[i-1][j-1]++;
+        imageBoard[i-1][j]++;
+        imageBoard[i-1][j+1]++;
+        imageBoard[i][j-1]++;
+        imageBoard[i][j+1]++;
+        imageBoard[i+1][j-1]++;
+        imageBoard[i+1][j]++;
+        imageBoard[i+1][j+1]++;
+      }
+    }
+  }
+  for(let i = 0; i < row; i++)
+  {
+    for(let j = 0; j < col; j++)
+    {
+      if(imageBoard[i][j] === 3 || (imageBoard[i][j] === 2 && boardRef.current[i][j] === 1))
+      {
+        boardRef.current[i][j] = 1
+      }
+      else
+      {
+        boardRef.current[i][j] = 0;
+      }
+    }
+  }
+}
+
+export function Uint8ClampedArrayToDense(data, width, height)
+{ 
+  let denseMatrix = new Array(width).fill(0).map(() => new Array(height).fill(0));
+  let count = 0;
+  for(let i = 0; i < data.length; i += 4)
+  {
+    if(data[i] === 255)
+    {
+      let col = Math.floor(count / width);
+      let row = count % width;
+      denseMatrix[col][row] = 1;
+    }
+    count++;
+  }
+  return denseMatrix;
+}
