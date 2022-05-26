@@ -74,6 +74,7 @@ export default function ConwayLifeGamePixel()
     }
 
     return () => {
+      requestRef.current = null;
       cancelAnimationFrame(requestRef.current);
       requestRef.current = null;
     }
