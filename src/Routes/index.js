@@ -11,6 +11,7 @@ import ConwayLifeGameCanvasPixel from '../ConwayLifeGameCanvas/ConwayLifeGameCan
 import BreakOutCanvas from '../BreakOutCanvas/BreakOutCanvas';
 import ImageProcessing from '../ImageProcessingWebGL/ImageUpload';
 import PinballCanvas from '../PinballCanvas/PinballCanvas';
+import WebGLTutorial from '../WebGLTutorial/WebGLTutorial';
 
 const route = () => {
   return (
@@ -24,6 +25,7 @@ const route = () => {
           <Route path="image-processing" element={<ImageProcessing />} />
           <Route path="pinball" element={<PinballCanvas />} />
         </Route>
+        <Route path="webgl" element={<WebGLTutorial />} />
       </Routes>
     </BrowserRouter>
   )
