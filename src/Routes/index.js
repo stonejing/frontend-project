@@ -24,6 +24,7 @@ const route = () => {
           <Route path="break-out" element={<BreakOutCanvas />} />
           <Route path="image-processing" element={<ImageProcessing />} />
           <Route path="pinball" element={<PinballCanvas />} />
+          <Route path="webgl" element={<WebGLTutorial />} />
         </Route>
         <Route path="webgl" element={<WebGLTutorial />} />
       </Routes>
