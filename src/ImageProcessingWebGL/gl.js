@@ -126,8 +126,6 @@ export function drawImageWebGL(
 
     gl.viewport(0, 0, image.width, image.height);
 
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);;
-
     {
       const numComponents = 2;
       const type = gl.FLOAT;

@@ -47,6 +47,8 @@ export default function WebGLTutorial()
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
     const shaderProgram = initShaderProgram(gl, vsSource, fsSource);
 
     const programInfo = {
@@ -69,8 +71,6 @@ export default function WebGLTutorial()
 
     drawImageWebGL(gl, programInfo, buffers, url, kernels, kernelMask);
     let end = performance.now();
-
-    
 
     setTime((end - start).toFixed(2));
 

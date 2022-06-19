@@ -22,6 +22,7 @@ uniform float uKernelWeight;
 
 void main() {
   vec2 onePixel = vec2(1.0, 1.0) / uTextureSize;
+  
   vec4 colorSum =
     texture2D(uSampler, vTextureCoord + onePixel * vec2(-1, -1)) * uKernel[0] +
     texture2D(uSampler, vTextureCoord + onePixel * vec2( 0, -1)) * uKernel[1] +

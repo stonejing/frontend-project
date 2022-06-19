@@ -11,6 +11,7 @@ import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ImageIcon from '@mui/icons-material/Image';
 import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined';
 import { Link } from 'react-router-dom';
 
 export const mainListItems = (
@@ -75,6 +76,15 @@ export const mainListItems = (
           <SportsBaseballIcon />
         </ListItemIcon>
         <ListItemText primary="Pinball" />
+      </ListItemButton>
+    </Link>
+
+    <Link to="/retroword-frontend">
+      <ListItemButton>
+        <ListItemIcon>
+          <AdjustOutlinedIcon />
+        </ListItemIcon>
+        <ListItemText primary="RetroWord" />
       </ListItemButton>
     </Link>
 

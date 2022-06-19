@@ -12,6 +12,7 @@ import BreakOutCanvas from '../BreakOutCanvas/BreakOutCanvas';
 import ImageProcessing from '../ImageProcessingWebGL/ImageUpload';
 import PinballCanvas from '../PinballCanvas/PinballCanvas';
 import WebGLTutorial from '../WebGLTutorial/WebGLTutorial';
+import EmptyVocabulary from '../Miscellaneous/EmptyVocabulary/EmptyVocabulary';
 
 const route = () => {
   return (
@@ -27,6 +28,7 @@ const route = () => {
           <Route path="webgl" element={<WebGLTutorial />} />
         </Route>
         <Route path="webgl" element={<WebGLTutorial />} />
+        <Route path="vocab" element={<EmptyVocabulary />} />
       </Routes>
     </BrowserRouter>
   )
